@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
-<<<<<<< HEAD
-=======
-
->>>>>>> 7423c37b4fabd03a9a4c14613bcdc65a30e62a57
 
 @Component({
   selector: 'app-vendor-home',
@@ -19,11 +15,7 @@ export class VendorHomeComponent implements OnInit {
 
   ngOnInit() {
     this.product={
-<<<<<<< HEAD
-      "userid":"",
-=======
       "user_id":4,
->>>>>>> 7423c37b4fabd03a9a4c14613bcdc65a30e62a57
       "name":"",
       "quantity":"",
       "price":0
