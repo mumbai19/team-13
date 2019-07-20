@@ -4,7 +4,7 @@ import { Http, Response,Headers,RequestOptions } from '@angular/http';
 import { Observable,Subject } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
-import 'rxjs/Rx'; //get everything from Rx    
+import 'rxjs/Rx'; //get everything from Rx
 // import 'rxjs/add/operator/toPromise';
 import { HttpHeaders } from '@angular/common/http';
 import { EventEmitter } from '@angular/core';
@@ -18,18 +18,13 @@ export class UserService{
     setUserId = uid => this.userid = uid;
 
     getUserId = () => this.userid;
+    openPackage=new EventEmitter<any>();
 
-    setLocation = location => this.location = location;
-
-    getLocation = () => this.location;
-
-    openPackage=new EventEmitter<any>();        
-  
     constructor(private http:Http) {
     }
-   
+
     //------------register user------------------------------------
-    
+
     postUser(userDetails){
         let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
         let options = new RequestOptions({ headers: headers });
@@ -39,7 +34,7 @@ export class UserService{
     }
 
     //------------login user------------------------------------
-    
+
     loginUser(userDetails){
         let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
         let options = new RequestOptions({ headers: headers });
@@ -57,10 +52,15 @@ export class UserService{
     }
 
      //------------get orders from farmers by vendors ------------------------------------
-    
+
      VendorGetOrdersFarmers(){
+<<<<<<< HEAD
         // return this.http.get('assets/data/vendorgetorders.json')
         return this.http.get('http://localhost:8080/team-13/jaljeev/public/') 
+=======
+        return this.http.get('assets/data/vendorgetorders.json')
+        //return this.http.get('http://localhost:3000/api/PermitMetadata')
+>>>>>>> 5367e8c468512f84d16b068defcc03e9316d4dc4
         .flatMap((data) =>data.json());
     }
 
@@ -91,7 +91,7 @@ export class UserService{
     //----------buyer getting farmer quotations----------------
     getFarmerQuotes(location){
         return this.http.get('assets/data/vendorgetorders.json')
-        //return this.http.get('http://localhost:3000/api/PermitMetadata') 
+        //return this.http.get('http://localhost:3000/api/PermitMetadata')
         .flatMap((data) =>data.json());
     }
 
@@ -172,8 +172,8 @@ export class UserService{
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }
-    
-    
+
+
     //---------for extracting and handling errors(post request)------------
     extractData(res: Response) {
         let body = res.json();
@@ -182,5 +182,17 @@ export class UserService{
     handleErrorObservable (error: Response | any) {
         console.error(error.message || error);
         return Observable.throw(error.message || error);
-    } 
+    }
+
+    //------------register user------------------------------------
+
+    submit_farmer_details(userDetails){
+        let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/regdata',userDetails, options)
+                .map(this.extractData)
+                .catch(this.handleErrorObservable);
+    }
+
+
 }

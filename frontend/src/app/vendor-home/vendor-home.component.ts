@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 5367e8c468512f84d16b068defcc03e9316d4dc4
 
 @Component({
   selector: 'app-vendor-home',
@@ -17,12 +20,12 @@ export class VendorHomeComponent implements OnInit {
 
   ngOnInit() {
     this.product={
-      "user_id":0,
+      "user_id":this.userservice.getUserId(),
       "name":"",
       "quantity":"",
       "price":0
     };
-    this.fetchOrder("");
+    this.fetchOrder();
   }
 
   fetchOrder(){
