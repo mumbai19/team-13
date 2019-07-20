@@ -54,13 +54,12 @@ export class UserService{
      //------------get orders from farmers by vendors ------------------------------------
 
      VendorGetOrdersFarmers(){
-<<<<<<< HEAD
+
         // return this.http.get('assets/data/vendorgetorders.json')
-        return this.http.get('http://localhost:8080/team-13/jaljeev/public/') 
-=======
+        return this.http.get('http://localhost:8080/team-13/jaljeev/public/')
         return this.http.get('assets/data/vendorgetorders.json')
         //return this.http.get('http://localhost:3000/api/PermitMetadata')
->>>>>>> 5367e8c468512f84d16b068defcc03e9316d4dc4
+
         .flatMap((data) =>data.json());
     }
 
@@ -84,7 +83,7 @@ export class UserService{
     //--------- farmer getting vendor quatations---------------
     getVendorQuotes(location){
         return this.http.get('assets/data/vendorgetorders.json')
-        //return this.http.get('http://localhost:3000/api/PermitMetadata') 
+        //return this.http.get('http://localhost:3000/api/PermitMetadata')
         .flatMap((data) =>data.json());
     }
 

@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 5367e8c468512f84d16b068defcc03e9316d4dc4
 
 @Component({
   selector: 'app-vendor-home',
