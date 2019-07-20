@@ -14,7 +14,8 @@ class AddQuantityToFarmers extends Migration
     public function up()
     {
         Schema::table('farmers', function (Blueprint $table) {
-            //
+            $table->integer('quantity');
+            $table->date('date_h');
         });
     }
 
@@ -26,7 +27,8 @@ class AddQuantityToFarmers extends Migration
     public function down()
     {
         Schema::table('farmers', function (Blueprint $table) {
-            //
+            $table->integer('quantity');
+            $table->date('date_h');
         });
     }
 }
