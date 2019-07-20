@@ -19,4 +19,6 @@ Route::post('/regdata',array('middleware' => 'cors', 'uses' => 'DataController@u
 
 Route::post('/loginuser','DataController@login_user');
 
-Route::post('/addproduct','DataController@add_product');
+Route::post('/addproduct',array('middleware' => 'cors', 'uses' => 'DataController@add_product'));
+
+Route::post('/temp','DataController@test');
