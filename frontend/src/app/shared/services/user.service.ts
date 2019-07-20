@@ -12,17 +12,16 @@ import { post } from 'selenium-webdriver/http';
 
 @Injectable({ providedIn: 'root' })
 export class UserService{
-  userid = 4;
-   location = "";
-
-   setUserId = uid => this.userid = uid;
-
+    userid = 4;
+    location = "";
+ 
+    setUserId = uid => this.userid = uid;
+ 
     getUserId = () => this.userid;
-
+ 
     setLocation = Location => this.location = Location;
-
+ 
     getLocation = () => this.location;
-
     openPackage=new EventEmitter<any>();
 
     constructor(private http:Http) {
@@ -62,7 +61,7 @@ export class UserService{
 
         // return this.http.get('assets/data/vendorgetorders.json')
         return this.http.get('http://localhost:8080/team-13/jaljeev/public/') 
-
+        .flatMap((data) =>data.json());
     }
 
      //---------vendor accept order-------------------
@@ -206,6 +205,7 @@ export class UserService{
     //------------submit farmer details------------------------------------
 
     submit_farmer_details(userDetails){
+
         let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
         let options = new RequestOptions({ headers: headers });
         return this.http.post('http://localhost:8080/team-13/jaljeev/public/addfarm',userDetails, options)

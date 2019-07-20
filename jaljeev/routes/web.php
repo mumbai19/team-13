@@ -34,3 +34,5 @@ Route::post('/activetrans','DataController@transaction_active');
 Route::post('/sendfishtrans','DataController@fish_transaction_pending');
 
 Route::post('/activefishtrans','DataController@fish_transaction_active');
+
+Route::post('/addfarm','DataController@add_farm');
