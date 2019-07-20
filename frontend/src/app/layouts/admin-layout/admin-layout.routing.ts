@@ -11,6 +11,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { VendorHomeComponent } from '../../vendor-home/vendor-home.component';
 import { RegisterFarmerComponent } from '../../register-farmer/register-farmer.component';
 import { BuyerHomeComponent } from '../../buyer-home/buyer-home.component';
+import { LoginComponent } from '../../login/login.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -66,4 +67,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'register', component:RegisterFarmerComponent},
     { path: 'vendor-home',        component: VendorHomeComponent },
     { path: 'buyer-home',        component: BuyerHomeComponent },
+    { path: 'login', component: LoginComponent }
 ];
