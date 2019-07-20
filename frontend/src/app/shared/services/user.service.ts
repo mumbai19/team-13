@@ -61,13 +61,6 @@ export class UserService{
 
         // return this.http.get('assets/data/vendorgetorders.json')
         return this.http.get('http://localhost:8080/team-13/jaljeev/public/') 
-
-
-        // return this.http.get('assets/data/vendorgetorders.json')
-        return this.http.get('http://localhost:8080/team-13/jaljeev/public/')
-        return this.http.get('assets/data/vendorgetorders.json')
-        //return this.http.get('http://localhost:3000/api/PermitMetadata')
-
         .flatMap((data) =>data.json());
     }
 
@@ -212,7 +205,7 @@ export class UserService{
     //------------submit farmer details------------------------------------
 
     submit_farmer_details(userDetails){
-        
+
         let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
         let options = new RequestOptions({ headers: headers });
         return this.http.post('http://localhost:8080/team-13/jaljeev/public/addfarm',userDetails, options)

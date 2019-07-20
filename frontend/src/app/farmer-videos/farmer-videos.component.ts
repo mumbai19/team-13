@@ -11,6 +11,8 @@ export class FarmerVideosComponent implements OnInit {
 
   urls = [
     'https://www.youtube.com/embed/PhlsZTvSbVk',
+    'https://www.youtube.com/embed/M7ILXjf5HoI',
+    'https://www.youtube.com/embed/ahQueMY-O3U',
   ];
 
   constructor(private sanitizer: DomSanitizer) { 
