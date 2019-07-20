@@ -8,6 +8,7 @@ use App\Product_Mapper;
 use App\Transaction;
 use App\FishTransaction;
 use DB;
+use Carbon\Carbon;
 class DataController extends Controller
 {
     
@@ -92,7 +93,6 @@ class DataController extends Controller
                 ->select('user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
                 ->get();
         return $vendors;
-        */
         $farmers =DB::table('fish_mappers')
                 ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_mappers.farmer_id')
                 ->join('fish', 'fish.fish_id', '=', 'fish_mappers.fish_id')
@@ -103,9 +103,12 @@ class DataController extends Controller
                     'vendors' => $farmers
                 ]);
         /*
+
         $productid=((Products::where('product_name',"Seed")->get())[0])->product_id;
         return $productid;
         */
+
+        return Carbon::today()->toDateString();
     }
     public function returnorder (Request $request)
     {
@@ -131,7 +134,6 @@ class DataController extends Controller
                     'vendors' => $farmers
                 ]);
     }
-<<<<<<< HEAD
 
     public function trasaction_pending(Request $request)
     {
@@ -176,8 +178,7 @@ class DataController extends Controller
         $tot->status="Done";
         $tot->save();
     }
-}
-=======
+
     public function tutorial(Request $request){
         $cate=$request->category;
         $loc=$request->location;
@@ -185,7 +186,6 @@ class DataController extends Controller
         $desc=$request->description;
         $sub=substr($_GET['URL'],-11,-1);
         $subs="https://www.youtube.com/watch?v=".$sub;
->>>>>>> 090d3ea1ef9f8be6aa15907683a682cc0bda7600
 
         $tut=new VideoTutorials;
         $tut->category=$cate;
@@ -199,10 +199,16 @@ class DataController extends Controller
         return response()->json([
             'URL' => $subs
         ]);
-
-
-
     }
 
-
+    public function add_farm(Request $request)
+    {
+        $new=new Farmers;
+        $new->area=$request->area;
+        $new->depth=$request->depth;
+        $new->ph=$request->ph;
+        $new->quantity=$request->quantity;
+        $new->date=Carbon::today()->toDateString();
+        $new->save();
+    }
 }
