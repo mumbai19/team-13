@@ -211,9 +211,18 @@ export class UserService{
         return Observable.throw(error.message || error);
     }
 
-    //------------register user------------------------------------
+    //------------submit farmer details------------------------------------
 
     submit_farmer_details(userDetails){
+        let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/addfarm',userDetails, options)
+                .map(this.extractData)
+                .catch(this.handleErrorObservable);
+    }
+    //------------submit video details------------------------------------
+
+    submit_video_details(userDetails){
         let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
         let options = new RequestOptions({ headers: headers });
         return this.http.post('http://localhost:8080/team-13/jaljeev/public/regdata',userDetails, options)

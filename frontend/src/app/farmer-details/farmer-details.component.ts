@@ -14,7 +14,7 @@ details:any;
   ngOnInit() {
     this.details = {
       "fish_name":"",
-      "date":"",
+      // "date":"",
       "fish_quantity":"",
       "area":"",
       "depth":"",
@@ -24,7 +24,7 @@ details:any;
   sub_details(){
 
     this.details.fish_name=(<HTMLInputElement>document.getElementById('fish-name')).value;
-    this.details.date=(<HTMLInputElement>document.getElementById('date')).value;
+    // this.details.date=(<HTMLInputElement>document.getElementById('date')).value;
     this.details.fish_quantity=(<HTMLInputElement>document.getElementById('fish_quantity')).value;
     this.details.area=(<HTMLInputElement>document.getElementById('area')).value;
     this.details.depth=(<HTMLInputElement>document.getElementById('depth')).value;
