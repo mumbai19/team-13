@@ -1,14 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User_M;
 use App\Farmer;
 use App\Products;
 use App\Product_Mapper;
 use DB;
-
 class DataController extends Controller
 {
     
@@ -21,7 +18,6 @@ class DataController extends Controller
         $new->type=$request->type;
         $new->password=$request->password;
         $new->save();
-
         if($request->type=='Farmer')
         {
             $farm=new Farmer;
@@ -68,25 +64,20 @@ class DataController extends Controller
             ]);
         }
     }
-
     public function add_product(Request $request)
     {
         $productname=$request->name;
         $vendorid=$request->user_id;
         $quant=$request->quantity;
         $pr=$request->price;
-
         $productid=((Products::where('product_name',$productname)->get())[0])->product_id;
-
         $pmap=new Product_Mapper;
         $pmap->vendor_id=$vendorid;
         $pmap->product_id=$productid;
         $pmap->quantity=$quant;
         $pmap->price=$pr;
         $pmap->save();
-
     }
-
     public function test()
     {
         
@@ -114,7 +105,6 @@ class DataController extends Controller
         return $productid;
         */
     }
-
     public function returnorder (Request $request)
     {
         $vendors =DB::table('product__mappers')
@@ -127,7 +117,6 @@ class DataController extends Controller
                     'vendors' => $vendors
                 ]);
     }
-
     public function fishorder (Request $request)
     {
         $farmers =DB::table('fish_mappers')
@@ -141,7 +130,3 @@ class DataController extends Controller
                 ]);
     }
 }
-
-    
-
-    
