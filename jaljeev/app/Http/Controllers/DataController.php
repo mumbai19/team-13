@@ -7,6 +7,8 @@ use App\User_M;
 use App\Farmer;
 use App\Products;
 use App\Product_Mapper;
+use App\Transaction;
+use App\FishTransaction;
 use DB;
 
 class DataController extends Controller
@@ -139,6 +141,50 @@ class DataController extends Controller
                 return response()->json([
                     'vendors' => $farmers
                 ]);
+    }
+
+    public function trasaction_pending(Request $request)
+    {
+        $tot1=(Product_Mapper::where([['farmer_id','=',$request->vendorid],['fish_id','=',$request->productid]])->get())[0];
+        $new=new Transaction;
+        $new->vendor_id=$request->vendorid;
+        $new->farmer_id=$request->farmerid;
+        $new->product_id=$request->productid;
+        $new->quantity=$request->quantity;
+        $new->status="Pending";
+        $new->sales=$new->quantity*$tot1->price;
+        $new->save();
+    }
+
+    public function transaction_active(Request $request)
+    {
+        $tot=(Transaction::where([['vendor_id','=',$request->vendorid],['farmer_id','=',$request->farmerid],['product_id','=',$request->productid],['quantity','=',$request->quantity]])->get())[0];
+        $tot1=(Product_Mapper::where([['vendor_id','=',$request->vendorid],['product_id','=',$request->productid]])->get())[0];
+        $tot1->quantity=$tot1->quantity-$tot->quantity;
+        $tot->status="Done";
+        $tot->save();
+    }
+
+    public function fish_trasaction_pending(Request $request)
+    {
+        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get())[0];
+        $new=new FishTransaction;
+        $new->buyer_id=$request->buyerid;
+        $new->farmer_id=$request->farmerid;
+        $new->fish_id=$request->fishid;
+        $new->quantity=$request->quantity;
+        $new->status="Pending";
+        $new->sales=$new->quantity*$tot1->price;
+        $new->save();
+    }
+
+    public function fish_transaction_active(Request $request)
+    {
+        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get())[0];
+        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get())[0];
+        $tot1->quantity=$tot1->quantity-$tot->quantity;
+        $tot->status="Done";
+        $tot->save();
     }
 }
 

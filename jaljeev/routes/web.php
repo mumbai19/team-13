@@ -25,3 +25,12 @@ Route::get('/temp','DataController@test');
 
 Route::get('/getvendors','DataController@returnorder');
 
+Route::get('/getfishordors','DataController@fishorder');
+
+Route::post('/sendtrans','DataController@transaction_pending');
+
+Route::post('/activetrans','DataController@transaction_active');
+
+Route::post('/sendfishtrans','DataController@fish_transaction_pending');
+
+Route::post('/activefishtrans','DataController@fish_transaction_active');
