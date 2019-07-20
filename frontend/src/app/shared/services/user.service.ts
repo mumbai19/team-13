@@ -13,6 +13,12 @@ import { post } from 'selenium-webdriver/http';
 @Injectable({ providedIn: 'root' })
 export class UserService{
 
+    userid = 4;
+
+    setUserId = uid => this.userid = uid;
+
+    getUserId = () => this.userid;
+
     openPackage=new EventEmitter<any>();        
   
     constructor(private http:Http) {
@@ -27,6 +33,18 @@ export class UserService{
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }
+
+    //------------login user------------------------------------
+    
+    loginUser(userDetails){
+        let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/loginuser',userDetails, options)
+                .map(this.extractData)
+                .catch(this.handleErrorObservable);
+    }
+
+    
 
     //---------vendor adds products-------------------
     VendorAddProduct(newProduct){
