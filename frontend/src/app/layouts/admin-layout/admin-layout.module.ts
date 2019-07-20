@@ -14,12 +14,15 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { VendorHomeComponent } from '../../vendor-home/vendor-home.component';
 import { RegisterFarmerComponent } from '../../register-farmer/register-farmer.component';
 import { BuyerHomeComponent } from '../../buyer-home/buyer-home.component';
+<<<<<<< HEAD
+=======
 import { LoginComponent } from '../../login/login.component';
 import { FarmerHomeComponent } from '../../farmer-home/farmer-home.component';
 import { FarmerVideosComponent } from '../../farmer-videos/farmer-videos.component';
 import { FarmerViewBuyersComponent } from '../../farmer-view-buyers/farmer-view-buyers.component';
 import { FarmerDetailsComponent } from '../../farmer-details/farmer-details.component';
 import { FarmerOrdersComponent } from '../../farmer-orders/farmer-orders.component';
+>>>>>>> 7423c37b4fabd03a9a4c14613bcdc65a30e62a57
 import {
   MatButtonModule,
   MatInputModule,
