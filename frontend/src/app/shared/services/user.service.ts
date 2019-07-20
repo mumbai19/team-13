@@ -12,12 +12,16 @@ import { post } from 'selenium-webdriver/http';
 
 @Injectable({ providedIn: 'root' })
 export class UserService{
-    userid = 4;
-    location = "";
+  userid = 4;
+   location = "";
 
-    setUserId = uid => this.userid = uid;
+   setUserId = uid => this.userid = uid;
 
-    getUserId = () => this.userid;
+   getUserId = () => this.userid;
+
+   setLocation = Location => this.location = Location;
+
+   getLocation = () => this.location;
     openPackage=new EventEmitter<any>();
 
     constructor(private http:Http) {
