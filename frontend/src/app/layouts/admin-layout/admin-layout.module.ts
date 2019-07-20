@@ -21,7 +21,7 @@ import { FarmerVideosComponent } from '../../farmer-videos/farmer-videos.compone
 import { FarmerViewBuyersComponent } from '../../farmer-view-buyers/farmer-view-buyers.component';
 import { FarmerDetailsComponent } from '../../farmer-details/farmer-details.component';
 import { FarmerOrdersComponent } from '../../farmer-orders/farmer-orders.component';
-
+import { ExpertComponent } from '../../expert/expert.component';
 import {
   MatButtonModule,
   MatInputModule,
@@ -63,6 +63,7 @@ import { UserService } from '../../shared/services/user.service';
     FarmerViewBuyersComponent,
     FarmerOrdersComponent,
     FarmerDetailsComponent,
+    ExpertComponent,
   ],
   providers:[UserService]
 })
