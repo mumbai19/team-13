@@ -12,7 +12,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { VendorHomeComponent } from '../../vendor-home/vendor-home.component';
-
+import { RegisterFarmerComponent } from '../../register-farmer/register-farmer.component';
 import {
   MatButtonModule,
   MatInputModule,
@@ -21,6 +21,8 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { UserService } from '../../shared/services/user.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -44,7 +46,9 @@ import {
     NotificationsComponent,
     UpgradeComponent,
     VendorHomeComponent,
-  ]
+    RegisterFarmerComponent
+  ],
+  providers:[UserService]
 })
 
 export class AdminLayoutModule {}
