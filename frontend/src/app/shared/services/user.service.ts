@@ -21,17 +21,26 @@ export class UserService{
     //------------register user------------------------------------
     
     postUser(userDetails){
+        let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/regdata',userDetails, options)
+                .map(this.extractData)
+                .catch(this.handleErrorObservable);
+    }
+
+    //---------vendor adds products-------------------
+    VendorAddProduct(newProduct){
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:3000/api/Package',userDetails, options)
+        return this.http.post('http://localhost:3000/api/Package',newProduct, options)
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }
 
      //------------get specific bought package------------------------------------
     
-     getSpecificBoughtPackage(){
-        return this.http.get('assets/data/openBoughtPackage.json')
+     VendorGetOrdersFarmers(){
+        return this.http.get('assets/data/vendorgetorders.json')
         //return this.http.get('http://localhost:3000/api/PermitMetadata') 
         .flatMap((data) =>data.json());
     }
