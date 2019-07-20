@@ -204,9 +204,22 @@ class DataController extends Controller
     public function allurl(){
         $urls=video_tutorials::select('URL')->get();
 
+<<<<<<< HEAD
         return response()->json([
             'URL' => $urls
         ]);
+=======
+    public function add_farm(Request $request)
+    {
+        $new=new Farmer;
+        $new->f_user_id=$request->userid;
+        $new->area=$request->area;
+        $new->depth=$request->depth;
+        $new->ph=$request->ph;
+        $new->quantity=$request->quantity;
+        $new->date_h=Carbon::today()->toDateString();
+        $new->save();
+>>>>>>> 348967f30212c27bcfc7c07f165f3e9550e49c2c
     }
 
 

@@ -22,6 +22,7 @@ class VerifyCsrfToken extends Middleware
         'http://localhost:8080/team-13/jaljeev/public/regdata',
         'http://localhost:8080/team-13/jaljeev/public/addproduct',
         'http://localhost:8080/team-13/jaljeev/public/loginuser',
-        'http://localhost:8080/team-13/jaljeev/public/temp'
+        'http://localhost:8080/team-13/jaljeev/public/temp',
+        'http://localhost:8080/team-13/jaljeev/public/addfarm'
     ];
 }
