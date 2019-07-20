@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import {SessionStorageService} from 'ngx-webstorage';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -24,6 +23,9 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { BuyerHomeComponent } from './buyer-home/buyer-home.component';
 
+
+
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -40,8 +42,6 @@ import { BuyerHomeComponent } from './buyer-home/buyer-home.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]
