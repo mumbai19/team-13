@@ -203,12 +203,13 @@ class DataController extends Controller
 
     public function add_farm(Request $request)
     {
-        $new=new Farmers;
+        $new=new Farmer;
+        $new->f_user_id=$request->userid;
         $new->area=$request->area;
         $new->depth=$request->depth;
         $new->ph=$request->ph;
         $new->quantity=$request->quantity;
-        $new->date=Carbon::today()->toDateString();
+        $new->date_h=Carbon::today()->toDateString();
         $new->save();
     }
 }

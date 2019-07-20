@@ -13,19 +13,18 @@ details:any;
 
   ngOnInit() {
     this.details = {
-      "fish_name":"",
-      // "date":"",
-      "fish_quantity":"",
-      "area":"",
-      "depth":"",
-      "ph":"",
+      
+      "userid":this.userservice.getUserId(),
+      "quantity":0,
+      "area":0,
+      "depth":0,
+      "ph":0,
 
   };}
   sub_details(){
-
-    this.details.fish_name=(<HTMLInputElement>document.getElementById('fish-name')).value;
-    // this.details.date=(<HTMLInputElement>document.getElementById('date')).value;
-    this.details.fish_quantity=(<HTMLInputElement>document.getElementById('fish_quantity')).value;
+console.log("hi");
+   
+    this.details.fish_quantity=(<HTMLInputElement>document.getElementById('fish-quantity')).value;
     this.details.area=(<HTMLInputElement>document.getElementById('area')).value;
     this.details.depth=(<HTMLInputElement>document.getElementById('depth')).value;
     this.details.ph=(<HTMLInputElement>document.getElementById('ph')).value;
