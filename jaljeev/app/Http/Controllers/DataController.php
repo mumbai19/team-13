@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User_M;
 use App\Farmer;
+use App\Products;
+use App\Product_Mapper;
 
 class DataController extends Controller
 {
+    
     public function user_insert(Request $request)
     {
         $new=new User_M;
@@ -32,7 +35,7 @@ class DataController extends Controller
         ]);
         
     }
-
+    
     public function login_user(Request $request)
     {
         $name=$request->name;
@@ -61,20 +64,32 @@ class DataController extends Controller
         }
     }
 
-    public function add_product(Request $request){
-    $productname=$request->product_name;
-    $vendorid=$request->user_id;
-    $quant=$request->quantity;
-    $pr=$request->price;
+    public function add_product(Request $request)
+    {
+        $productname=$request->product_name;
+        $vendorid=$request->user_id;
+        $quant=$request->quantity;
+        $pr=$request->price;
 
-    $productid=(products::where('product_name',$productname)->get());
+        $productid=((Products::where('product_name',$productname)->get())[0])->product_id;
 
-    $pmap=new Product_Mapper;
-    $pmap->vendor_id=$vendorid;
-    $pmap->product_id=$productid;
-    $pmap->quantity=$quant;
-    $pmap->price=$pr;
-    $pmap->save();
+        $pmap=new Product_Mapper;
+        $pmap->vendor_id=$vendorid;
+        $pmap->product_id=$productid;
+        $pmap->quantity=$quant;
+        $pmap->price=$pr;
+        $pmap->save();
 
+
+
+    }
+
+    public function test(Request $request)
+    {
+        return "Hello";
+        /*
+        $productid=((Products::where('product_name',"Seed")->get())[0])->product_id;
+        return $productid;
+        */
     }
 }

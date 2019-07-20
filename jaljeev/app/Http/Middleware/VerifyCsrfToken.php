@@ -19,6 +19,9 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'http://localhost:8080/team-13/jaljeev/public/regdata'
+        'http://localhost:8080/team-13/jaljeev/public/regdata',
+        'http://localhost:8080/team-13/jaljeev/public/addproduct',
+        'http://localhost:8080/team-13/jaljeev/public/loginuser',
+        'http://localhost:8080/team-13/jaljeev/public/temp'
     ];
 }
