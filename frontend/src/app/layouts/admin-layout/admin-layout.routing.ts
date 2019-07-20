@@ -12,7 +12,9 @@ import { VendorHomeComponent } from '../../vendor-home/vendor-home.component';
 import { RegisterFarmerComponent } from '../../register-farmer/register-farmer.component';
 import { BuyerHomeComponent } from '../../buyer-home/buyer-home.component';
 import { LoginComponent } from '../../login/login.component';
-
+import { FarmerHomeComponent } from '../../farmer-home/farmer-home.component';
+import { FarmerVideosComponent } from '../../farmer-videos/farmer-videos.component';
+import { FarmerViewBuyersComponent } from '../../farmer-view-buyers/farmer-view-buyers.component';
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
@@ -67,5 +69,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'register', component:RegisterFarmerComponent},
     { path: 'vendor-home',        component: VendorHomeComponent },
     { path: 'buyer-home',        component: BuyerHomeComponent },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'farmer-home', component: FarmerHomeComponent },
+    { path: 'farmer-videos', component: FarmerVideosComponent },
+    { path: 'farmer-views-buyer', component: FarmerViewBuyersComponent },
 ];

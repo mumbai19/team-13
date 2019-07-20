@@ -15,7 +15,9 @@ import { VendorHomeComponent } from '../../vendor-home/vendor-home.component';
 import { RegisterFarmerComponent } from '../../register-farmer/register-farmer.component';
 import { BuyerHomeComponent } from '../../buyer-home/buyer-home.component';
 import { LoginComponent } from '../../login/login.component';
-
+import { FarmerHomeComponent } from '../../farmer-home/farmer-home.component';
+import { FarmerVideosComponent } from '../../farmer-videos/farmer-videos.component';
+import { FarmerViewBuyersComponent } from '../../farmer-view-buyers/farmer-view-buyers.component';
 import {
   MatButtonModule,
   MatInputModule,
@@ -52,6 +54,9 @@ import { UserService } from '../../shared/services/user.service';
     RegisterFarmerComponent,
     BuyerHomeComponent,
     LoginComponent,
+    FarmerHomeComponent,
+    FarmerVideosComponent,
+    FarmerViewBuyersComponent,
   ],
   providers:[UserService]
 })
