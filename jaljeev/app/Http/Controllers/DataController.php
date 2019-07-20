@@ -12,11 +12,13 @@ class DataController extends Controller
     {
         $new=new User_M;
         $new->name=$request->name;
-        $new->contact=$request->name;
+        $new->contact=$request->contact;
         $new->location=$request->location;
         $new->type=$request->type;
         $new->password=$request->password;
         $new->save();
+
+        /*
         if($request->type=='Farmer')
         {
             $farm=new Farmer;
@@ -28,6 +30,7 @@ class DataController extends Controller
         return response()->json([
             'user_id' => $new->user_id,
         ]);
+        */
     }
 
     public function login_user(Request $request)
