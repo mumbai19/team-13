@@ -18,7 +18,6 @@ class DataController extends Controller
         $new->password=$request->password;
         $new->save();
 
-        /*
         if($request->type=='Farmer')
         {
             $farm=new Farmer;
@@ -26,11 +25,12 @@ class DataController extends Controller
             $farm->depth=-1;
             $farm->ph=-1;
             $farm->f_user_id=$new->user_id;
+            $farm->save();
         }
         return response()->json([
             'user_id' => $new->user_id,
         ]);
-        */
+        
     }
 
     public function login_user(Request $request)
@@ -43,20 +43,20 @@ class DataController extends Controller
             if($pass==$user->password)
             {
                 return response()->json([
-                    'message' => 'Login Successfull',
+                    'message' => 0,
                 ]);
             }
             else
             {
                 return response()->json([
-                    'message' => 'Password is Wrong',
+                    'message' => 1,
                 ]);
             }
         }
         else
         {
             return response()->json([
-                'message' => 'Please Register',
+                'message' => 2,
             ]);
         }
     }

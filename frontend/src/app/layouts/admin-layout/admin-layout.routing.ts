@@ -10,6 +10,8 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { VendorHomeComponent } from '../../vendor-home/vendor-home.component';
 import { RegisterFarmerComponent } from '../../register-farmer/register-farmer.component';
+import { BuyerHomeComponent } from '../../buyer-home/buyer-home.component';
+
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
@@ -63,4 +65,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'register', component:RegisterFarmerComponent},
     { path: 'vendor-home',        component: VendorHomeComponent },
+    { path: 'buyer-home',        component: BuyerHomeComponent },
 ];
