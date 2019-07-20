@@ -27,6 +27,7 @@ import { BuyerHomeComponent } from './buyer-home/buyer-home.component';
 
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
