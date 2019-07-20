@@ -28,16 +28,19 @@
         <div class="tab-content tab-space">
             <div class="tab-pane active" id="add">
                 <form>
+                            
+                                    <select class="selectpicker" data-style="btn btn-link" id="name">
+                                            <option >Seed</option>
+                                            <option >Feed</option>
+                                            <option>Net</option>
+                                    </select>
+
                             <mat-form-field class="example-full-width">
-                              <input matInput id="name" placeholder="Name">
+                              <input matInput id="quantity" type="number" placeholder="Quantity">
                             </mat-form-field>
 
                             <mat-form-field class="example-full-width">
-                              <input matInput id="quantity" placeholder="Quantity">
-                            </mat-form-field>
-
-                            <mat-form-field class="example-full-width">
-                                <input matInput id="price" placeholder="Price">
+                                <input matInput id="price" type="number" placeholder="Price">
                             </mat-form-field>
                    
 
