@@ -19,26 +19,35 @@ export class BuyerHomeComponent implements OnInit {
       "farmerid":0,
       "fishid":0,
       "quantity":0,
-      "status":"pending"
+      "status":"pending",
+      "sales":0
     };
+    this.fetchFarmerQuotes("location");
   }
 
-  fetchFarmerQuotes(){
+  changeLocation(newlocation){
+    console.log(newlocation);
+    this.fetchFarmerQuotes(newlocation);
+  }
+
+  fetchFarmerQuotes(location){
     this.quotes=[];
-      this.userservice.VendorGetOrdersFarmers().subscribe((data)=>{
+      this.userservice.getFarmerQuotes(location).subscribe((data)=>{
         this.quotes.push(data);
         console.log(this.quotes);
   });    
   }
 
-  Buy(farmerid,fishid){
+  Buy(farmerid,productid,price){
 
-    // this.placeorder.buyerid=this.userservice.
+    this.placeorder.buyerid=this.userservice.getUserId();
     this.placeorder.farmerid=farmerid;
-    this.placeorder.productid=fishid;
-    this.placeorder.quantity=(<HTMLInputElement>document.getElementById(farmerid+fishid)).value;
+    this.placeorder.productid=productid;
+    this.placeorder.quantity=(<HTMLInputElement>document.getElementById(farmerid+productid)).value;
+    this.placeorder.sales=this.placeorder.quantity*price;
     this.userservice.sendOrderToFarmer(this.placeorder).subscribe((data)=>{
 
+      
     });   
   }
 

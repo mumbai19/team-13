@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   response:any;
   passwordError = false;
   nonExistentUser = false;
-
+  location:any;
 
   ngOnInit() {
     this.user = {
@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
     if(this.response.message === 0){
       this.userservice.setUserId(this.response.userid);
+      this.userservice.setLocation(this.response.location);
     }
     else if(this.response.message === 1)
     {

@@ -28,7 +28,6 @@ export class RegisterFarmerComponent implements OnInit {
     this.user.location=(<HTMLInputElement>document.getElementById('location')).value;
     this.user.contact=(<HTMLInputElement>document.getElementById('contact')).value;
     this.user.password=(<HTMLInputElement>document.getElementById('password')).value;
-    this.user.type=(<HTMLInputElement>document.getElementById('name')).value;
     this.user.type=(<HTMLInputElement>document.getElementById('type')).value;
     console.log(this.user);
     this.userservice.postUser(this.user).subscribe(data=>{

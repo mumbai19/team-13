@@ -13,10 +13,16 @@ import { post } from 'selenium-webdriver/http';
 @Injectable({ providedIn: 'root' })
 export class UserService{
     userid = 4;
+    location = "";
 
     setUserId = uid => this.userid = uid;
 
     getUserId = () => this.userid;
+
+    setLocation = location => this.location = location;
+
+    getLocation = () => this.location;
+
     openPackage=new EventEmitter<any>();        
   
     constructor(private http:Http) {
@@ -53,8 +59,8 @@ export class UserService{
      //------------get orders from farmers by vendors ------------------------------------
     
      VendorGetOrdersFarmers(){
-        return this.http.get('assets/data/vendorgetorders.json')
-        //return this.http.get('http://localhost:3000/api/PermitMetadata') 
+        // return this.http.get('assets/data/vendorgetorders.json')
+        return this.http.get('http://localhost:8080/team-13/jaljeev/public/') 
         .flatMap((data) =>data.json());
     }
 
@@ -75,8 +81,15 @@ export class UserService{
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }
+    //--------- farmer getting vendor quatations---------------
+    getVendorQuotes(location){
+        return this.http.get('assets/data/vendorgetorders.json')
+        //return this.http.get('http://localhost:3000/api/PermitMetadata') 
+        .flatMap((data) =>data.json());
+    }
+
     //----------buyer getting farmer quotations----------------
-    getFarmerQuotes(){
+    getFarmerQuotes(location){
         return this.http.get('assets/data/vendorgetorders.json')
         //return this.http.get('http://localhost:3000/api/PermitMetadata') 
         .flatMap((data) =>data.json());

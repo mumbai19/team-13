@@ -2,7 +2,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    
+                        <select class="selectpicker" [(ngModel)]="selectedLocation" (ngModelChange)="changeLocation($event)" data-style="btn btn-link" id="type">
+                                <option >Dadar</option>
+                                <option >Andheri</option>
+                                <option>Parel</option>
+                        </select>
                         <div class="card">
                                 <div class="card-header card-header-danger">
                                     <h4 class="card-title ">Farmer Quotations</h4>
@@ -29,10 +33,10 @@
                                                             <td >{{q.quantity}}</td>
                                                             <td >{{q.price}}</td>
                                                             <td >
-                                                                   <input matInput id=q.farmerid+q.productid placeholder="Quantity required" type="number">
+                                                                   <input matInput id=q.user_id+q.product_id placeholder="Quantity required" type="number">
                                                             </td>
                                                             <td >
-                                                                    <button mat-raised-button type="submit" (click)="Buy(q.farmerid,q.fishid)" class="btn btn-danger pull-right">Buy</button>
+                                                                    <button mat-raised-button type="submit" (click)="Buy(q.user_id,q.product_id)" class="btn btn-danger pull-right">Buy</button>
                                                             </td>
                                                     </tr>
                                             </tbody>
