@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
-import { setTimeout } from 'timers';
 
 @Component({
   selector: 'app-vendor-home',
@@ -16,6 +15,7 @@ export class VendorHomeComponent implements OnInit {
 
   ngOnInit() {
     this.product={
+      "userid":"",
       "name":"",
       "quantity":"",
       "price":0

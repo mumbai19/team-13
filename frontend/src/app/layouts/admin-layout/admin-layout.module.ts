@@ -14,7 +14,6 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { VendorHomeComponent } from '../../vendor-home/vendor-home.component';
 import { RegisterFarmerComponent } from '../../register-farmer/register-farmer.component';
 import { BuyerHomeComponent } from '../../buyer-home/buyer-home.component';
-
 import {
   MatButtonModule,
   MatInputModule,

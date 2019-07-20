@@ -62,6 +62,23 @@ export class UserService{
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }
+    //----------buyer getting farmer quotations----------------
+    getFarmerQuotes(){
+        return this.http.get('assets/data/vendorgetorders.json')
+        //return this.http.get('http://localhost:3000/api/PermitMetadata') 
+        .flatMap((data) =>data.json());
+    }
+
+    //----------buyer placing orders----------------
+    sendFarmerOrder(orderDetails){
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:3000/api/Package',orderDetails, options)
+                .map(this.extractData)
+                .catch(this.handleErrorObservable);
+    }
+
+
 
     //----------------------Post provider generated package----------------
     postPackage(packageDetails){
