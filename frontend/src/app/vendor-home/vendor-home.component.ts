@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
-import { setTimeout } from 'timers';
+
 
 @Component({
   selector: 'app-vendor-home',
@@ -11,7 +11,7 @@ export class VendorHomeComponent implements OnInit {
   product:any;
 
   order=[];
-  constructor(private userservice:UserService) { 
+  constructor(private userservice:UserService) {
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class VendorHomeComponent implements OnInit {
         this.order.push(data);
         console.log(data);
   });
-    
+
 console.log(this.order);
   }
 
@@ -38,7 +38,7 @@ console.log(this.order);
     this.product.name=(<HTMLInputElement>document.getElementById('name')).value;
     this.product.quantity=(<HTMLInputElement>document.getElementById('quantity')).value;
     this.product.price=(<HTMLInputElement>document.getElementById('price')).value;
-    
+
     console.log(this.product);
     this.userservice.VendorAddProduct(this.product).subscribe(data=>{
 
