@@ -24,6 +24,9 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { BuyerHomeComponent } from './buyer-home/buyer-home.component';
 
+
+
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -40,8 +43,6 @@ import { BuyerHomeComponent } from './buyer-home/buyer-home.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

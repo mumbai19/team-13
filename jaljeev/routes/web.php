@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::post('/regdata',array('middleware' => 'cors', 'uses' => 'DataController@user_insert'));
 
 Route::post('/loginuser','DataController@login_user');
+
+Route::post('/addproduct',array('middleware' => 'cors', 'uses' => 'DataController@add_product'));
+
+Route::post('/temp','DataController@test');
