@@ -127,7 +127,6 @@ class DataController extends Controller
                     'vendors' => $vendors
                 ]);
     }
-}
 
     public function fishorder (Request $request)
     {
@@ -141,5 +140,8 @@ class DataController extends Controller
                     'vendors' => $farmers
                 ]);
     }
+}
+
+    
 
     
