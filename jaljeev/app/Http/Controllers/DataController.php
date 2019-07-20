@@ -109,7 +109,7 @@ class DataController extends Controller
                 ->join('user__m_s', 'user__m_s.user_id', '=', 'product__mappers.vendor_id')
                 ->join('products', 'products.product_id', '=', 'product__mappers.product_id')
                 ->where([['user__m_s.type','=',"Vendor"],['user__m_s.location','=',$_GET['location']]])
-                ->select('products.product_id','user__m_s.user_id','user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
+                ->select('user__m_s.contact','user__m_s.location','products.product_id','user__m_s.user_id','user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
                 ->get();
                 return response()->json([
                     'vendors' => $vendors
