@@ -24,3 +24,4 @@ Route::post('/addproduct',array('middleware' => 'cors', 'uses' => 'DataControlle
 Route::get('/temp','DataController@test');
 
 Route::get('/getvendors','DataController@returnorder');
+
