@@ -60,4 +60,21 @@ class DataController extends Controller
             ]);
         }
     }
+
+    public function add_product(Request $request){
+    $productname=$request->product_name;
+    $vendorid=$request->user_id;
+    $quant=$request->quantity;
+    $pr=$request->price;
+
+    $productid=(products::where('product_name',$productname)->get());
+
+    $pmap=new Product_Mapper;
+    $pmap->vendor_id=$vendorid;
+    $pmap->product_id=$productid;
+    $pmap->quantity=$quant;
+    $pmap->price=$pr;
+    $pmap->save();
+
+    }
 }
