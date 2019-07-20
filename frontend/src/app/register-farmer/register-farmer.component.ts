@@ -32,7 +32,7 @@ export class RegisterFarmerComponent implements OnInit {
     this.user.type=(<HTMLInputElement>document.getElementById('type')).value;
     console.log(this.user);
     this.userservice.postUser(this.user).subscribe(data=>{
-
+      console.log(data);
     });
   }
 
