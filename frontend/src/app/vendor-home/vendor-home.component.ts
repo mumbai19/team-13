@@ -16,6 +16,7 @@ export class VendorHomeComponent implements OnInit {
 
   ngOnInit() {
     this.product={
+      "user_id":4,
       "name":"",
       "quantity":"",
       "price":0
