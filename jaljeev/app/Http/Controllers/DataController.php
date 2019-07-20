@@ -48,14 +48,16 @@ class DataController extends Controller
             {
                 return response()->json([
                     'message' => 0,
-                    'userid'=> $user->user_id
+                    'userid'=> $user->user_id,
+                    'location'=> $user->location
                 ]);
             }
             else
             {
                 return response()->json([
                     'message' => 1,
-                    'userid'=> $user->user_id
+                    'userid'=> $user->user_id,
+                    'location'=> $user->location
                 ]);
             }
         }
@@ -97,7 +99,17 @@ class DataController extends Controller
                 ->select('user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
                 ->get();
         return $vendors;
-        
+        */
+        $farmers =DB::table('fish_mappers')
+                ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_mappers.farmer_id')
+                ->join('fish', 'fish.fish_id', '=', 'fish_mappers.fish_id')
+                ->where([['user__m_s.type','=',"Farmer"],['user__m_s.location','=',$_GET['location']]])
+                ->select('user__m_s.contact','user__m_s.location','fish.fish_id','user__m_s.user_id','user__m_s.name','fish.fish_name','fish_mappers.quantity','fish_mappers.price')
+                ->get();
+                return response()->json([
+                    'vendors' => $farmers
+                ]);
+        /*
         $productid=((Products::where('product_name',"Seed")->get())[0])->product_id;
         return $productid;
         */
@@ -113,6 +125,19 @@ class DataController extends Controller
                 ->get();
                 return response()->json([
                     'vendors' => $vendors
+                ]);
+    }
+
+    public function fishorder (Request $request)
+    {
+        $farmers =DB::table('fish_mappers')
+                ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_mappers.farmer_id')
+                ->join('fish', 'fish.fish_id', '=', 'fish_mappers.fish_id')
+                ->where([['user__m_s.type','=',"Farmer"],['user__m_s.location','=',$_GET['location']]])
+                ->select('user__m_s.contact','user__m_s.location','fish.fish_id','user__m_s.user_id','user__m_s.name','fish.fish_name','fish_mappers.quantity','fish_mappers.price')
+                ->get();
+                return response()->json([
+                    'vendors' => $farmers
                 ]);
     }
 
