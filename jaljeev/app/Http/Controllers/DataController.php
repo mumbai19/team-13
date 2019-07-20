@@ -129,4 +129,30 @@ class DataController extends Controller
                     'vendors' => $farmers
                 ]);
     }
+    public function tutorial(Request $request){
+        $cate=$request->category;
+        $loc=$request->location;
+        $user=$request->user_id;
+        $desc=$request->description;
+        $sub=substr($_GET['URL'],-11,-1);
+        $subs="https://www.youtube.com/watch?v=".$sub;
+
+        $tut=new VideoTutorials;
+        $tut->category=$cate;
+        $tut->location=$loc;
+        $tut->user_id=$user;
+        $tut->description=$desc;
+        $tut->URL=$subs;
+
+        $tut->save();
+
+        return response()->json([
+            'URL' => $subs
+        ]);
+
+
+
+    }
+
+
 }
