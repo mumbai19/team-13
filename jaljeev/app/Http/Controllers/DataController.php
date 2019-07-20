@@ -7,6 +7,7 @@ use App\User_M;
 use App\Farmer;
 use App\Products;
 use App\Product_Mapper;
+use DB;
 
 class DataController extends Controller
 {
@@ -40,19 +41,21 @@ class DataController extends Controller
     {
         $name=$request->name;
         $pass=$request->password;
-        $user=(User_M::where('name',$name)->get());
+        $user=(User_M::where('name',$name)->get())[0];
         if(count($user)>0)
         {
             if($pass==$user->password)
             {
                 return response()->json([
                     'message' => 0,
+                    'userid'=> $user->user_id
                 ]);
             }
             else
             {
                 return response()->json([
                     'message' => 1,
+                    'userid'=> $user->user_id
                 ]);
             }
         }
@@ -80,16 +83,36 @@ class DataController extends Controller
         $pmap->price=$pr;
         $pmap->save();
 
-
-
     }
 
-    public function test(Request $request)
+    public function test()
     {
-        return $request;
+        
         /*
+        return $_GET['location'];
+        $vendors =DB::table('product__mappers')
+                ->join('user__m_s', 'user__m_s.user_id', '=', 'product__mappers.vendor_id')
+                ->join('products', 'products.product_id', '=', 'product__mappers.product_id')
+                ->where('product__mappers.vendor_id','=',$_GET['location'])
+                ->select('user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
+                ->get();
+        return $vendors;
+        
         $productid=((Products::where('product_name',"Seed")->get())[0])->product_id;
         return $productid;
         */
+    }
+
+    public function returnorder (Request $request)
+    {
+        $vendors =DB::table('product__mappers')
+                ->join('user__m_s', 'user__m_s.user_id', '=', 'product__mappers.vendor_id')
+                ->join('products', 'products.product_id', '=', 'product__mappers.product_id')
+                ->where([['user__m_s.type','=',"Vendor"],['user__m_s.location','=',$_GET['location']]])
+                ->select('user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
+                ->get();
+                return response()->json([
+                    'vendors' => $vendors
+                ]);
     }
 }

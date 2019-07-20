@@ -21,4 +21,6 @@ Route::post('/loginuser','DataController@login_user');
 
 Route::post('/addproduct',array('middleware' => 'cors', 'uses' => 'DataController@add_product'));
 
-Route::post('/temp','DataController@test');
+Route::get('/temp','DataController@test');
+
+Route::get('/getvendors','DataController@returnorder');
