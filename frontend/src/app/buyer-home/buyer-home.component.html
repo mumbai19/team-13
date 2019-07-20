@@ -1,0 +1,105 @@
+<br>
+<br>
+<br>
+<!-- style="margin-left:3%;" -->
+<ul class="nav nav-pills nav-pills-icons" role="tablist">
+    <!--
+        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+    -->
+    <li class="nav-item">
+        <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
+            <i class="material-icons">shopping_basket</i>
+            Order Conifrmations
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
+            <i class="material-icons"></i>
+            Place New Orders
+        </a>
+    </li>
+
+</ul>
+<div class="tab-content tab-space">
+    <div class="tab-pane active" id="dashboard-1">
+
+      <div class="card-body">
+          <div class="tab-content">
+              <div class="tab-pane active" id="profile">
+                  <table class="table">
+                      <tbody>
+                          <tr>
+                              <td>
+                                  name
+                              </td>
+                              <td>10kg-fish1</td>
+                              <td>Price</td>
+                              <td class="td-actions text-right">
+                                  <button mat-raised-button type="button" matTooltip="done Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                      <i class="material-icons">done</i>
+                                  </button>
+                                  <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                      <i class="material-icons">close</i>
+                                  </button>
+                              </td>
+                          </tr>
+
+
+
+                      </tbody>
+                  </table>
+              </div>
+
+
+          </div>
+
+
+
+</div>
+    </div>
+    <div class="tab-pane" id="schedule-1">
+      <div class="card-body">
+          <div class="tab-content">
+              <div class="tab-pane active" id="profile">
+                  <table class="table">
+                      <tbody>
+                          <tr>
+                              <td>
+                                <div style="width:50px;">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput id="name" placeholder="Type">
+                                    </mat-form-field>
+                                </div>
+                              </td>
+                              <td><div style="width:50px;">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput id="name" placeholder="Amount">
+                                  </mat-form-field>
+                              </div>
+                              <td class="td-actions text-right">
+                                  <button mat-raised-button type="button" matTooltip="done Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                      <i class="material-icons">done</i>
+                                  </button>
+                                  <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                      <i class="material-icons">close</i>
+                                  </button>
+                              </td>
+                          </tr>
+
+
+
+                      </tbody>
+                  </table>
+              </div>
+
+
+          </div>
+
+
+
+  </div>
+    </div>
+    <div class="tab-pane" id="tasks-1">
+       <p>yo</p>
+    </div>
+</div>
