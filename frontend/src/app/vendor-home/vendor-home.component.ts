@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
+
+
 <<<<<<< HEAD
 
-
 =======
->>>>>>> 5367e8c468512f84d16b068defcc03e9316d4dc4
-
+>>>>>>> 76b5f240ea3f90b5ed3fd917f6b00f8c248adca7
 @Component({
   selector: 'app-vendor-home',
   templateUrl: './vendor-home.component.html',

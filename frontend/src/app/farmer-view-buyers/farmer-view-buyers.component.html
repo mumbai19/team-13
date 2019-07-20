@@ -1,3 +1,43 @@
-<p>
-  farmer-view-buyers works!
-</p>
+<div class="main-content">
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title ">Your orders</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <th>Buyer Name</th>
+                            <th>Contact</th>
+                            <th>Location</th>
+                            <th>Fish</th>
+                            <th>Quantity</th>
+                            <th></th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                                <tr  class="list" *ngFor="let or of order" >
+                                        <td >{{or.name}}</td>
+                                        <td >{{or.contact}}</td>
+                                        <td >{{or.location}}</td>
+                                        <td > {{or.product}}</td>
+                                        <td >{{or.quantity}}</td>
+                                        <td >
+                                                <button mat-raised-button type="submit" (click)="Accept(or.buyerid,or.farmerid,or.productid)" class="btn btn-success pull-right">Accept</button>
+                                        </td>
+                                        <td >
+                                                <button mat-raised-button type="submit" (click)="Reject(or.buyerid,or.farmerid,or.productid)" class="btn btn-danger pull-right">Reject</button>
+                                        </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
