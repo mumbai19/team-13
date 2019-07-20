@@ -30,9 +30,9 @@ export class UserService{
 
     //---------vendor adds products-------------------
     VendorAddProduct(newProduct){
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,OPTIONS','Access-Control-Allow-Headers':'Content-Type, Authorization, Content-Length, X-Requested-With'});
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:3000/api/Package',newProduct, options)
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/addproduct',newProduct, options)
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }

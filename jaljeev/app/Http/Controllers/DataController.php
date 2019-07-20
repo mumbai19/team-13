@@ -66,7 +66,7 @@ class DataController extends Controller
 
     public function add_product(Request $request)
     {
-        $productname=$request->product_name;
+        $productname=$request->name;
         $vendorid=$request->user_id;
         $quant=$request->quantity;
         $pr=$request->price;
@@ -86,7 +86,7 @@ class DataController extends Controller
 
     public function test(Request $request)
     {
-        return "Hello";
+        return $request;
         /*
         $productid=((Products::where('product_name',"Seed")->get())[0])->product_id;
         return $productid;
