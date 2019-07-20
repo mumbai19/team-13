@@ -22,7 +22,24 @@
                               </div>
                               <div class="col-md-6">
                                   <mat-form-field class="example-full-width">
-                                    <input matInput id="location" placeholder="Location">
+                                    <input matInput id="date" placeholder="Date">
+                                  </mat-form-field>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput id="depth" placeholder="depth">
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput id="ph" placeholder="ph">
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput id="area" placeholder="area of pond sqmt">
                                   </mat-form-field>
                               </div>
                           </div>
@@ -50,7 +67,7 @@
 
 
 
-                          <button mat-raised-button type="submit" (click)="register()" class="btn btn-danger pull-right">Register</button>
+                          <button mat-raised-button type="submit" (click)="sub_details()" class="btn btn-danger pull-right">Submit</button>
                           <div class="clearfix"></div>
                       </form>
                   </div>
