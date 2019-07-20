@@ -59,17 +59,17 @@ export class UserService{
      //------------get orders from farmers by vendors ------------------------------------
 
      VendorGetOrdersFarmers(){
-<<<<<<< HEAD
+// <<<<<<< HEAD
         // return this.http.get('assets/data/vendorgetorders.json')
-        return this.http.get('http://localhost:8080/team-13/jaljeev/public/') 
-=======
+        return this.http.get('http://localhost:8080/team-13/jaljeev/public/')
+// =======
 
         // return this.http.get('assets/data/vendorgetorders.json')
         return this.http.get('http://localhost:8080/team-13/jaljeev/public/')
         return this.http.get('assets/data/vendorgetorders.json')
         //return this.http.get('http://localhost:3000/api/PermitMetadata')
 
->>>>>>> 76b5f240ea3f90b5ed3fd917f6b00f8c248adca7
+// >>>>>>> 76b5f240ea3f90b5ed3fd917f6b00f8c248adca7
         .flatMap((data) =>data.json());
     }
 
