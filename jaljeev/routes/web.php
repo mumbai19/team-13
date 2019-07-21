@@ -21,7 +21,7 @@ Route::post('/loginuser','DataController@login_user');
 
 Route::post('/addproduct',array('middleware' => 'cors', 'uses' => 'DataController@add_product'));
 
-Route::get('/temp','DataController@test');
+Route::get('/temp','DataController@tutorial');
 
 Route::get('/getvendors','DataController@returnorder');
 
@@ -35,4 +35,6 @@ Route::post('/sendfishtrans','DataController@fish_transaction_pending');
 
 Route::post('/activefishtrans','DataController@fish_transaction_active');
 
+Route::get('/allurl','DataController@geturl');
 Route::post('/addfarm','DataController@add_farm');
+Route::get('/webt','DataController@pending');

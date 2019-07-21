@@ -21,7 +21,7 @@ class DataController extends Controller
         $new->type=$request->type;
         $new->password=$request->password;
         $new->save();
-        if($request->type=='Farmer')
+       /* if($request->type=='Farmer')
         {
             $farm=new Farmer;
             $farm->area=-1;
@@ -34,10 +34,9 @@ class DataController extends Controller
             'user_id' => $new->user_id,
         ]);
         
-    }
-    
-    public function login_user(Request $request)
-    {
+    }*/
+}
+    public function login_user(Request $request) {
         $name=$request->name;
         $pass=$request->password;
         $user=(User_M::where('name',$name)->get())[0];
@@ -93,6 +92,7 @@ class DataController extends Controller
                 ->select('user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
                 ->get();
         return $vendors;
+        */
         $farmers =DB::table('fish_mappers')
                 ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_mappers.farmer_id')
                 ->join('fish', 'fish.fish_id', '=', 'fish_mappers.fish_id')
@@ -200,7 +200,14 @@ class DataController extends Controller
             'URL' => $subs
         ]);
     }
+    
+    public function allurl(){
+        $urls=video_tutorials::select('URL')->get();
 
+        return response()->json([
+            'URL' => $urls
+        ]);
+    }
     public function add_farm(Request $request)
     {
         $new=new Farmer;
@@ -212,4 +219,17 @@ class DataController extends Controller
         $new->date_h=Carbon::today()->toDateString();
         $new->save();
     }
+
+    public function pending(){
+        $farmers =DB::table('transactions')
+                ->join('user__m_s', 'user__m_s.user_id', '=', 'transactions.farmer_id')
+                ->join('products', 'products.product_id', '=', 'transactions.product_id')
+                ->where([['transactions.vendor_id','=',4]])
+                ->get();
+                return response()->json([
+                    'vendors' => $farmers
+                ]);
+    }
+
 }
+
