@@ -37,4 +37,7 @@ Route::post('/activefishtrans','DataController@fish_transaction_active');
 
 Route::get('/allurl','DataController@geturl');
 Route::post('/addfarm','DataController@add_farm');
-Route::get('/webt','DataController@pending');
+
+Route::get('/webfish','DataController@pendingfish');
+Route::get('/rejectproduct','DataController@transaction_act');
+Route::get('/rejectfish','DataController@fish_transaction_act');

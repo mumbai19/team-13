@@ -157,6 +157,15 @@ class DataController extends Controller
         $tot->save();
     }
 
+    public function transaction_act(Request $request)
+    {
+        $tot=(Transaction::where([['vendor_id','=',$request->vendorid],['farmer_id','=',$request->farmerid],['product_id','=',$request->productid],['quantity','=',$request->quantity]])->get())[0];
+        $tot1=(Product_Mapper::where([['vendor_id','=',$request->vendorid],['product_id','=',$request->productid]])->get())[0];
+        $tot->status="Rejected";
+        $tot->save();
+    }
+
+
     public function fish_trasaction_pending(Request $request)
     {
         $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get())[0];
@@ -178,6 +187,15 @@ class DataController extends Controller
         $tot->status="Done";
         $tot->save();
     }
+
+    public function fish_transaction_act(Request $request)
+    {
+        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get())[0];
+        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get())[0];
+        $tot->status="Rejected";
+        $tot->save();
+    }
+
 
     public function tutorial(Request $request){
         $cate=$request->category;
@@ -220,16 +238,17 @@ class DataController extends Controller
         $new->save();
     }
 
-    public function pending(){
-        $farmers =DB::table('transactions')
-                ->join('user__m_s', 'user__m_s.user_id', '=', 'transactions.farmer_id')
-                ->join('products', 'products.product_id', '=', 'transactions.product_id')
-                ->where([['transactions.vendor_id','=',4]])
+    public function pendingfish(){
+        $buyers =DB::table('fish_transactions')
+                ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_transactions.farmer_id')
+                ->join('fish', 'fish.fish_id', '=', 'fish_transactions.fish_id')
+                ->where([['fish_transactions.buyer_id','=',5]])
                 ->get();
                 return response()->json([
-                    'vendors' => $farmers
+                    'buyers' => $buyers
                 ]);
     }
+
 
 }
 
