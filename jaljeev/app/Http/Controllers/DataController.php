@@ -22,7 +22,7 @@ class DataController extends Controller
         $new->type=$request->type;
         $new->password=$request->password;
         $new->save();
-        if($request->type=='Farmer')
+       /* if($request->type=='Farmer')
         {
             $farm=new Farmer;
             $farm->area=-1;
@@ -35,10 +35,9 @@ class DataController extends Controller
             'user_id' => $new->user_id,
         ]);
         
-    }
-    
-    public function login_user(Request $request)
-    {
+    }*/
+}
+    public function login_user(Request $request) {
         $name=$request->name;
         $pass=$request->password;
         $user=(User_M::where('name',$name)->get())[0];
@@ -94,6 +93,7 @@ class DataController extends Controller
                 ->select('user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
                 ->get();
         return $vendors;
+        */
         $farmers =DB::table('fish_mappers')
                 ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_mappers.farmer_id')
                 ->join('fish', 'fish.fish_id', '=', 'fish_mappers.fish_id')
@@ -164,6 +164,15 @@ class DataController extends Controller
         
     }
 
+    public function transaction_act(Request $request)
+    {
+        $tot=(Transaction::where([['vendor_id','=',$request->vendorid],['farmer_id','=',$request->farmerid],['product_id','=',$request->productid],['quantity','=',$request->quantity]])->get()[0]);
+        $tot1=(Product_Mapper::where([['vendor_id','=',$request->vendorid],['product_id','=',$request->productid]])->get()[0]);
+        $tot->status="Rejected";
+        $tot->save();
+    }
+
+
     public function fish_transaction_pending(Request $request)
     {
         $tot1=Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get()[0];
@@ -179,12 +188,21 @@ class DataController extends Controller
 
     public function fish_transaction_active(Request $request)
     {
-        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get())[0];
-        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get())[0];
+        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get()[0]);
+        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get()[0]);
         $tot1->quantity=$tot1->quantity-$tot->quantity;
         $tot->status="Done";
         $tot->save();
     }
+
+    public function fish_transaction_act(Request $request)
+    {
+        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get()[0]);
+        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get()[0]);
+        $tot->status="Rejected";
+        $tot->save();
+    }
+
 
     public function tutorial(Request $request){
         $cate=$request->category;
@@ -207,7 +225,14 @@ class DataController extends Controller
             'URL' => $subs
         ]);
     }
+    
+    public function allurl(){
+        $urls=video_tutorials::select('URL')->get();
 
+        return response()->json([
+            'URL' => $urls
+        ]);
+    }
     public function add_farm(Request $request)
     {
         $new=new Farmer;
@@ -233,4 +258,17 @@ class DataController extends Controller
             ]);
 
     }
+    public function pendingfish(){
+        $buyers =DB::table('fish_transactions')
+                ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_transactions.farmer_id')
+                ->join('fish', 'fish.fish_id', '=', 'fish_transactions.fish_id')
+                ->where([['fish_transactions.buyer_id','=',5]])
+                ->get();
+                return response()->json([
+                    'buyers' => $buyers
+                ]);
+    }
+
+
 }
+

@@ -44,6 +44,7 @@ import { BuyerHomeComponent } from './buyer-home/buyer-home.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

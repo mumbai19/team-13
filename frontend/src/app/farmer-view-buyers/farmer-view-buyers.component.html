@@ -23,13 +23,13 @@
                                         <td >{{or.name}}</td>
                                         <td >{{or.contact}}</td>
                                         <td >{{or.location}}</td>
-                                        <td > {{or.product}}</td>
+                                        <td > {{or.fish_name}}</td>
                                         <td >{{or.quantity}}</td>
                                         <td >
-                                                <button mat-raised-button type="submit" (click)="Accept(or.buyerid,or.farmerid,or.productid)" class="btn btn-success pull-right">Accept</button>
+                                                <button mat-raised-button type="submit" (click)="Accept(or.buyer_id,or.farmer_id,or.fish_id,or.quantity)" class="btn btn-success pull-right">Accept</button>
                                         </td>
                                         <td >
-                                                <button mat-raised-button type="submit" (click)="Reject(or.buyerid,or.farmerid,or.productid)" class="btn btn-danger pull-right">Reject</button>
+                                                <button mat-raised-button type="submit" (click)="Reject(or.buyer_id,or.farmer_id,or.fish_id)" class="btn btn-danger pull-right">Reject</button>
                                         </td>
                                 </tr>
                         </tbody>

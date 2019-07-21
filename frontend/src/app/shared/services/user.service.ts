@@ -97,11 +97,20 @@ export class UserService{
                 .catch(this.handleErrorObservable);
     }
 
+     //------------farmer get orders given by buyers------------------------------------
+
+     Farmergetorders(){
+
+        // return this.http.get('assets/data/vendorgetorders.json')
+        return this.http.get('http://localhost:8080/team-13/jaljeev/public/webfish') 
+        .map((data) =>data.json());
+    }
+
     //-------------farmer accepts order from buyer------------------
     FarmerAcceptOrder(order){
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:3000/api/Package',order, options)
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/activefishtrans',order, options)
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }

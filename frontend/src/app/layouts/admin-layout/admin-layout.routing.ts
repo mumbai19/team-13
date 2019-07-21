@@ -18,6 +18,9 @@ import { FarmerViewBuyersComponent } from '../../farmer-view-buyers/farmer-view-
 import { FarmerDetailsComponent } from '../../farmer-details/farmer-details.component';
 import { FarmerOrdersComponent } from '../../farmer-orders/farmer-orders.component';
 import { ExpertComponent } from '../../expert/expert.component';
+import { ExpertHomeComponent } from '../../expert-home/expert-home.component';
+import { ExpertPortalComponent } from '../../expert-portal/expert-portal.component';
+
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -80,4 +83,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'farmer-details', component: FarmerDetailsComponent },
     { path: 'farmer-orders', component: FarmerOrdersComponent },
     { path: 'expert', component: ExpertComponent },
+    { path: 'expert-home', component: ExpertHomeComponent },
+    { path: 'expert-portal', component: ExpertPortalComponent },
 ];
