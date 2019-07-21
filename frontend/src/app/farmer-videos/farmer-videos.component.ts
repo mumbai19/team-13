@@ -11,20 +11,20 @@ export class FarmerVideosComponent implements OnInit {
 
   urls = [
     'https://www.youtube.com/embed/PhlsZTvSbVk',
-    'https://www.youtube.com/embed/M7ILXjf5HoI',
+    'https://www.youtube.com/embed/hTGJMreGWLw',
     'https://www.youtube.com/embed/ahQueMY-O3U',
   ];
 
-  constructor(private sanitizer: DomSanitizer) { 
+  constructor(private sanitizer: DomSanitizer) {
 
-    
+
   }
 
-  
-  safeurls = [this.sanitizer.bypassSecurityTrustResourceUrl(this.urls[0])];
-  
 
-  
+  safeurls = [this.sanitizer.bypassSecurityTrustResourceUrl(this.urls[0])];
+
+
+
   ngOnInit() {
 
     for(let i = 1; i < this.urls.length; i++)
