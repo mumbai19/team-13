@@ -10,6 +10,8 @@ use App\FishTransaction;
 use App\Fish_Mapper;
 use DB;
 use Carbon\Carbon;
+use App\Sample_cost;
+use App\Sample_weight;
 class DataController extends Controller
 {
     
@@ -270,5 +272,5 @@ class DataController extends Controller
     }
 
 
-}
+}   
 

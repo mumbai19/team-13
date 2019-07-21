@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use App\Sample_cost;
+use App\Sample_weight;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -44,3 +45,13 @@ Route::post('/addfarm','DataController@add_farm');
 Route::get('/webfish','DataController@pendingfish');
 Route::get('/rejectproduct','DataController@transaction_act');
 Route::get('/rejectfish','DataController@fish_transaction_act');
+
+Route::get('/chart_performance',function(){
+    $new=Sample_cost::all();
+    return view('chart',compact('new'));
+});
+
+Route::get('/chart_performance2',function(){
+    $new=Sample_weight::all();
+    return view('chart2',compact('new'));
+});
