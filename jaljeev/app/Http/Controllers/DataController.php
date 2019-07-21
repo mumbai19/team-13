@@ -204,11 +204,10 @@ class DataController extends Controller
     public function allurl(){
         $urls=video_tutorials::select('URL')->get();
 
-<<<<<<< HEAD
         return response()->json([
             'URL' => $urls
         ]);
-=======
+    }
     public function add_farm(Request $request)
     {
         $new=new Farmer;
@@ -219,9 +218,18 @@ class DataController extends Controller
         $new->quantity=$request->quantity;
         $new->date_h=Carbon::today()->toDateString();
         $new->save();
->>>>>>> 348967f30212c27bcfc7c07f165f3e9550e49c2c
     }
 
+    public function pending(){
+        $farmers =DB::table('transactions')
+                ->join('user__m_s', 'user__m_s.user_id', '=', 'transactions.farmer_id')
+                ->join('products', 'products.product_id', '=', 'transactions.product_id')
+                ->where([['transactions.vendor_id','=',4]])
+                ->get();
+                return response()->json([
+                    'vendors' => $farmers
+                ]);
+    }
 
 }
 

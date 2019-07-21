@@ -35,8 +35,6 @@ Route::post('/sendfishtrans','DataController@fish_transaction_pending');
 
 Route::post('/activefishtrans','DataController@fish_transaction_active');
 
-<<<<<<< HEAD
 Route::get('/allurl','DataController@geturl');
-=======
 Route::post('/addfarm','DataController@add_farm');
->>>>>>> 348967f30212c27bcfc7c07f165f3e9550e49c2c
+Route::get('/webt','DataController@pending');
