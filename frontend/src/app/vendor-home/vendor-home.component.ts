@@ -10,7 +10,8 @@ import { UserService } from '../shared/services/user.service';
 })
 export class VendorHomeComponent implements OnInit {
   product:any;
-
+  acceptorder:any;
+  rejectorder:any;
   order=[];
   constructor(private userservice:UserService) {
   }
@@ -28,8 +29,8 @@ export class VendorHomeComponent implements OnInit {
   fetchOrder(){
     this.order=[];
       this.userservice.VendorGetOrdersFarmers().subscribe((data)=>{
-        this.order.push(data);
-        console.log(data);
+        this.order.push(data.$farmers);
+        console.log(this.order);
   });
 
 console.log(this.order);
@@ -48,18 +49,28 @@ console.log(this.order);
     });
   }
 
-  Accept(farmername)
+  Accept(vendorid,farmerid,productid,quantity)
   {
-    console.log(farmername);
-    this.userservice.VendorAcceptOrder(farmername).subscribe(data=>{
+    this.acceptorder={
+      "farmerid":farmerid,
+      "vendorid":vendorid,
+      "productid":productid,
+      "quantity":quantity
+    };
+    console.log(this.acceptorder);
+    this.userservice.VendorAcceptOrder(this.acceptorder).subscribe(data=>{
 
     });
   }
 
-  Reject(farmername)
+  Reject(vendorid,farmerid,productid)
   {
-    console.log(farmername);
-    this.userservice.VendorRejectOrder(farmername).subscribe(data=>{
+    this.rejectorder={
+      "farmerid":farmerid,
+      "vendorid":vendorid,
+      "productid":productid
+    };
+    this.userservice.VendorRejectOrder(this.rejectorder).subscribe(data=>{
 
     });
   }

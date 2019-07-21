@@ -7,6 +7,7 @@ use App\Products;
 use App\Product_Mapper;
 use App\Transaction;
 use App\FishTransaction;
+use App\Fish_Mapper;
 use DB;
 use Carbon\Carbon;
 class DataController extends Controller
@@ -107,8 +108,13 @@ class DataController extends Controller
         $productid=((Products::where('product_name',"Seed")->get())[0])->product_id;
         return $productid;
         */
-
-        return Carbon::today()->toDateString();
+        $farmers =DB::table('transactions')
+               ->join('user__m_s', 'user__m_s.user_id', '=', 'transactions.farmer_id')
+               ->join('products', 'products.product_id', '=', 'transactions.product_id')
+               ->where([['transactions.vendor_id','=',4]])
+               ->get();
+        return $farmers;
+        
     }
     public function returnorder (Request $request)
     {
@@ -116,7 +122,7 @@ class DataController extends Controller
                 ->join('user__m_s', 'user__m_s.user_id', '=', 'product__mappers.vendor_id')
                 ->join('products', 'products.product_id', '=', 'product__mappers.product_id')
                 ->where([['user__m_s.type','=',"Vendor"],['user__m_s.location','=',$_GET['location']]])
-                ->select('user__m_s.contact','user__m_s.location','products.product_id','user__m_s.user_id','user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
+                ->select('product__mappers.pm_id','user__m_s.contact','user__m_s.location','products.product_id','user__m_s.user_id','user__m_s.name','products.product_name','product__mappers.quantity','product__mappers.price')
                 ->get();
                 return response()->json([
                     'vendors' => $vendors
@@ -128,16 +134,16 @@ class DataController extends Controller
                 ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_mappers.farmer_id')
                 ->join('fish', 'fish.fish_id', '=', 'fish_mappers.fish_id')
                 ->where([['user__m_s.type','=',"Farmer"],['user__m_s.location','=',$_GET['location']]])
-                ->select('user__m_s.contact','user__m_s.location','fish.fish_id','user__m_s.user_id','user__m_s.name','fish.fish_name','fish_mappers.quantity','fish_mappers.price')
+                ->select('fm_id','user__m_s.contact','user__m_s.location','fish.fish_id','user__m_s.user_id','user__m_s.name','fish.fish_name','fish_mappers.quantity','fish_mappers.price')
                 ->get();
                 return response()->json([
                     'vendors' => $farmers
                 ]);
     }
 
-    public function trasaction_pending(Request $request)
+    public function transaction_pending(Request $request)
     {
-        $tot1=(Product_Mapper::where([['farmer_id','=',$request->vendorid],['fish_id','=',$request->productid]])->get())[0];
+        $tot1=(Product_Mapper::where([['vendor_id','=',$request->vendorid],['product_id','=',$request->productid]])->get())[0];
         $new=new Transaction;
         $new->vendor_id=$request->vendorid;
         $new->farmer_id=$request->farmerid;
@@ -150,25 +156,26 @@ class DataController extends Controller
 
     public function transaction_active(Request $request)
     {
-        $tot=(Transaction::where([['vendor_id','=',$request->vendorid],['farmer_id','=',$request->farmerid],['product_id','=',$request->productid],['quantity','=',$request->quantity]])->get())[0];
-        $tot1=(Product_Mapper::where([['vendor_id','=',$request->vendorid],['product_id','=',$request->productid]])->get())[0];
+        $tot=(Transaction::where([['vendor_id','=',$request->vendorid],['farmer_id','=',$request->farmerid],['product_id','=',$request->productid],['quantity','=',$request->quantity]])->get()[0]);
+        $tot1=(Product_Mapper::where([['vendor_id','=',$request->vendorid],['product_id','=',$request->productid]])->get()[0]);
         $tot1->quantity=$tot1->quantity-$tot->quantity;
         $tot->status="Done";
         $tot->save();
+        
     }
 
     public function transaction_act(Request $request)
     {
-        $tot=(Transaction::where([['vendor_id','=',$request->vendorid],['farmer_id','=',$request->farmerid],['product_id','=',$request->productid],['quantity','=',$request->quantity]])->get())[0];
-        $tot1=(Product_Mapper::where([['vendor_id','=',$request->vendorid],['product_id','=',$request->productid]])->get())[0];
+        $tot=(Transaction::where([['vendor_id','=',$request->vendorid],['farmer_id','=',$request->farmerid],['product_id','=',$request->productid],['quantity','=',$request->quantity]])->get()[0]);
+        $tot1=(Product_Mapper::where([['vendor_id','=',$request->vendorid],['product_id','=',$request->productid]])->get()[0]);
         $tot->status="Rejected";
         $tot->save();
     }
 
 
-    public function fish_trasaction_pending(Request $request)
+    public function fish_transaction_pending(Request $request)
     {
-        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get())[0];
+        $tot1=Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get()[0];
         $new=new FishTransaction;
         $new->buyer_id=$request->buyerid;
         $new->farmer_id=$request->farmerid;
@@ -181,8 +188,8 @@ class DataController extends Controller
 
     public function fish_transaction_active(Request $request)
     {
-        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get())[0];
-        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get())[0];
+        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get()[0]);
+        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get()[0]);
         $tot1->quantity=$tot1->quantity-$tot->quantity;
         $tot->status="Done";
         $tot->save();
@@ -190,8 +197,8 @@ class DataController extends Controller
 
     public function fish_transaction_act(Request $request)
     {
-        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get())[0];
-        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get())[0];
+        $tot=(FishTransaction::where([['buyer_id','=',$request->buyerid],['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid],['quantity','=',$request->quantity]])->get()[0]);
+        $tot1=(Fish_Mapper::where([['farmer_id','=',$request->farmerid],['fish_id','=',$request->fishid]])->get()[0]);
         $tot->status="Rejected";
         $tot->save();
     }
@@ -238,6 +245,19 @@ class DataController extends Controller
         $new->save();
     }
 
+    public function retrieve()
+    {
+        $farmers =DB::table('transactions')
+               ->join('user__m_s', 'user__m_s.user_id', '=', 'transactions.farmer_id')
+               ->join('products', 'products.product_id', '=', 'transactions.product_id')
+               ->where([['transactions.vendor_id','=',4],['transactions.status','=','Pending']])
+               ->get();
+
+               return response()->json([
+                '$farmers' => $farmers
+            ]);
+
+    }
     public function pendingfish(){
         $buyers =DB::table('fish_transactions')
                 ->join('user__m_s', 'user__m_s.user_id', '=', 'fish_transactions.farmer_id')

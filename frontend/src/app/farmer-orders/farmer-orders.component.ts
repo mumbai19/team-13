@@ -33,19 +33,21 @@ export class FarmerOrdersComponent implements OnInit {
   getVendorQuotes(location){
     this.quotes=[];
       this.userservice.getVendorQuotes(location).subscribe((data)=>{
-        this.quotes.push(data);
+        this.quotes.push(data.vendors);
         console.log(this.quotes);
   });    
   }
 
-  Buy(userid,productid,price){
+  Buy(userid,productid,price,pmid){
 
-    this.placeorder.farmerid=this.userservice.getUserId();
+    // this.placeorder.farmerid=this.userservice.getUserId();
+    this.placeorder.farmerid=6;
     this.placeorder.vendorid=userid;
     this.placeorder.productid=productid;
-    this.placeorder.quantity=(<HTMLInputElement>document.getElementById(userid+productid)).value;
+    this.placeorder.quantity=(<HTMLInputElement>document.getElementById(pmid)).value;
     this.placeorder.sales=this.placeorder.quantity*price;
-    this.userservice.sendOrderToFarmer(this.placeorder).subscribe((data)=>{
+    console.log(this.placeorder);
+    this.userservice.sendOrderToVendor(this.placeorder).subscribe((data)=>{
 
       
     });   

@@ -25,7 +25,7 @@ Route::get('/temp','DataController@tutorial');
 
 Route::get('/getvendors','DataController@returnorder');
 
-Route::get('/getfishordors','DataController@fishorder');
+Route::get('/getfishorders','DataController@fishorder');
 
 Route::post('/sendtrans','DataController@transaction_pending');
 
@@ -35,6 +35,9 @@ Route::post('/sendfishtrans','DataController@fish_transaction_pending');
 
 Route::post('/activefishtrans','DataController@fish_transaction_active');
 
+Route::post('/addfarm','DataController@add_farm');
+
+Route::get('/retrieve_farmers','DataController@retrieve');
 Route::get('/allurl','DataController@geturl');
 Route::post('/addfarm','DataController@add_farm');
 

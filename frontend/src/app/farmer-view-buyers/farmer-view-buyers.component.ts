@@ -22,21 +22,24 @@ export class FarmerViewBuyersComponent implements OnInit {
 
   fetchOrder(){
     this.order=[];
-      this.userservice.VendorGetOrdersFarmers().subscribe((data)=>{
-        this.order.push(data);
+      this.userservice.Farmergetorders().subscribe((data)=>{
+        console.log(data);
+        this.order.push(data.buyers[0]);
         console.log(data);
   });
 
 console.log(this.order);
   }
 
-  Accept(buyerid,farmerid,productid)
+  Accept(buyerid,farmerid,productid,quantity)
   {
     this.acceptorder={
       "farmerid":farmerid,
       "buyerid":buyerid,
-      "productid":productid
+      "fishid":productid,
+      "quantity":quantity
     };
+    console.log(this.acceptorder);
     this.userservice.FarmerAcceptOrder(this.acceptorder).subscribe(data=>{
 
     });
@@ -47,7 +50,7 @@ console.log(this.order);
     this.rejectorder={
       "farmerid":farmerid,
       "buyerid":buyerid,
-      "productid":productid
+      "fishid":productid
     };
     this.userservice.FarmerRejectOrder(this.rejectorder).subscribe(data=>{
 
