@@ -33,18 +33,22 @@ export class BuyerHomeComponent implements OnInit {
   fetchFarmerQuotes(location){
     this.quotes=[];
       this.userservice.getFarmerQuotes(location).subscribe((data)=>{
-        this.quotes.push(data);
+        console.log(data);
+        this.quotes.push(data.vendors);
         console.log(this.quotes);
   });    
   }
 
-  Buy(farmerid,productid,price){
+  Buy(farmerid,productid,fishid,price,quantity){
 
-    this.placeorder.buyerid=this.userservice.getUserId();
+    // this.placeorder.buyerid=this.userservice.getUserId();
+    this.placeorder.buyerid=5;
     this.placeorder.farmerid=farmerid;
     this.placeorder.productid=productid;
-    this.placeorder.quantity=(<HTMLInputElement>document.getElementById(farmerid+productid)).value;
+    this.placeorder.fishid=fishid;
+    this.placeorder.quantity=(<HTMLInputElement>document.getElementById(quantity)).value;
     this.placeorder.sales=this.placeorder.quantity*price;
+    console.log(this.placeorder);
     this.userservice.sendOrderToFarmer(this.placeorder).subscribe((data)=>{
 
       

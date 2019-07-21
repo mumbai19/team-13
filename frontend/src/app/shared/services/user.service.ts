@@ -12,7 +12,7 @@ import { post } from 'selenium-webdriver/http';
 
 @Injectable({ providedIn: 'root' })
 export class UserService{
-    userid = 4;
+    userid = 6;
     location = "";
  
     setUserId = uid => this.userid = uid;
@@ -60,15 +60,15 @@ export class UserService{
      VendorGetOrdersFarmers(){
 
         // return this.http.get('assets/data/vendorgetorders.json')
-        return this.http.get('http://localhost:8080/team-13/jaljeev/public/') 
-        .flatMap((data) =>data.json());
+        return this.http.get('http://localhost:8080/team-13/jaljeev/public/retrieve_farmers') 
+        .map((data) =>data.json());
     }
 
      //---------vendor accept order-------------------
      VendorAcceptOrder(newProduct){
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:3000/api/Package',newProduct, options)
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/activetrans',newProduct, options)
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }
@@ -83,9 +83,18 @@ export class UserService{
     }
     //--------- farmer getting vendor quotations---------------
     getVendorQuotes(location){
-        return this.http.get('assets/data/vendorgetorders.json')
+        return this.http.get('http://localhost:8080/team-13/jaljeev/public/getvendors?location='+location)
         //return this.http.get('http://localhost:3000/api/PermitMetadata')
-        .flatMap((data) =>data.json());
+        .map((data) =>data.json());
+    }
+
+    //----------farmer placing orders----------------
+    sendOrderToVendor(orderDetails){
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/sendtrans',orderDetails, options)
+                .map(this.extractData)
+                .catch(this.handleErrorObservable);
     }
 
     //-------------farmer accepts order from buyer------------------
@@ -108,16 +117,16 @@ export class UserService{
 
     //----------buyer getting farmer quotations----------------
     getFarmerQuotes(location){
-        return this.http.get('assets/data/vendorgetorders.json')
+        return this.http.get('http://localhost:8080/team-13/jaljeev/public/getfishorders?location='+location)
         //return this.http.get('http://localhost:3000/api/PermitMetadata')
-        .flatMap((data) =>data.json());
+        .map((data) =>data.json());
     }
 
     //----------buyer placing orders----------------
     sendOrderToFarmer(orderDetails){
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:3000/api/Package',orderDetails, options)
+        return this.http.post('http://localhost:8080/team-13/jaljeev/public/sendfishtrans',orderDetails, options)
                 .map(this.extractData)
                 .catch(this.handleErrorObservable);
     }

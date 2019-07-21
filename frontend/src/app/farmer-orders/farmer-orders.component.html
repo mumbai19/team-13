@@ -25,7 +25,7 @@
                                             <th></th>
                                         </thead>
                                         <tbody>
-                                                <tr  class="list" *ngFor="let q of quotes" >
+                                                <tr  class="list" *ngFor="let q of quotes[0]" >
                                                         <td >{{q.name}}</td>
                                                         <td >{{q.contact}}</td>
                                                         <td >{{q.location}}</td>
@@ -33,10 +33,10 @@
                                                         <td >{{q.quantity}}</td>
                                                         <td >{{q.price}}</td>
                                                         <td >
-                                                               <input matInput id=q.user_id+q.product_id placeholder="Quantity required" type="number">
+                                                               <input matInput [id]=q.pm_id placeholder="Quantity required" type="number">
                                                         </td>
                                                         <td >
-                                                                <button mat-raised-button type="submit" (click)="Buy(q.user_id,q.product_id,q.price)" class="btn btn-danger pull-right">Buy</button>
+                                                                <button mat-raised-button type="submit" (click)="Buy(q.user_id,q.product_id,q.price,q.pm_id)" class="btn btn-danger pull-right">Buy</button>
                                                         </td>
                                                 </tr>
                                         </tbody>
